@@ -1,0 +1,74 @@
+<div style="margin-left: 15em; margin-right: 15em">
+  <div style="justify-content: center">
+    <button (click)="returnButton()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="15"
+        height="20"
+        viewBox="0,-60,256,256"
+      >
+        <g
+          fill="#ffffff"
+          fill-rule="nonzero"
+          stroke="none"
+          stroke-width="1"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="10"
+          stroke-dasharray=""
+          stroke-dashoffset="0"
+          font-family="none"
+          font-weight="none"
+          font-size="none"
+          text-anchor="none"
+          style="mix-blend-mode: normal"
+        >
+          <g transform="scale(10.66667,10.66667)">
+            <path
+              d="M12.02344,2c-0.14184,-0.00444 -0.28204,0.03146 -0.4043,0.10352l-9.5,5.58789c-0.23099,0.13606 -0.37183,0.38502 -0.36948,0.65308c0.00235,0.26807 0.14754,0.51452 0.38087,0.64651c0.23333,0.13199 0.51936,0.12946 0.75033,-0.00662l0.11914,-0.07031v11.33594c0.00004,0.4142 0.3358,0.74996 0.75,0.75h16.5c0.4142,-0.00004 0.74996,-0.3358 0.75,-0.75v-11.33594l0.11914,0.07031c0.23097,0.1361 0.51701,0.13864 0.75035,0.00665c0.23334,-0.13199 0.37854,-0.37845 0.38088,-0.64653c0.00235,-0.26808 -0.13852,-0.51704 -0.36951,-0.65309l-9.5,-5.58789c-0.10855,-0.06398 -0.23148,-0.09958 -0.35742,-0.10352zM12,3.62109l7.5,4.41016v11.46875h-3.5v-7.75c-0.00004,-0.4142 -0.3358,-0.74996 -0.75,-0.75h-6.5c-0.4142,0.00004 -0.74996,0.3358 -0.75,0.75v7.75h-3.5v-11.46875zM9.5,12.5h5v7h-5z"
+            ></path>
+          </g>
+        </g></svg
+      >&nbsp;Back
+    </button>
+  </div>
+  <h2>{{ movieDetail?.title }}</h2>
+  <div class="row">
+    <div style="width: auto">
+      <img width="180" height="250" ngSrc="{{ srcImg }}" />
+    </div>
+    <p style="width: 60%"><b>Summary:</b>&nbsp;{{ movieDetail?.summary }}</p>
+  </div>
+  <br />
+  <div class="row">
+    <table style="overflow: hidden">
+      <caption style="text-align: center">
+        Details
+      </caption>
+      <tbody>
+        <tr>
+          <th>Box office</th>
+          <td>{{ movieDetail?.box_officeDisplay }}</td>
+        </tr>
+        <tr>
+          <th>Budget</th>
+          <td>{{ movieDetail?.budget }}</td>
+        </tr>
+        <tr>
+          <th>Duration</th>
+          <td>{{ movieDetail?.durationDisplay }}</td>
+        </tr>
+        <tr>
+          <th>Producers</th>
+          <td>{{ movieDetail?.producersDisplay }}</td>
+        </tr>
+        <tr>
+          <th>Cinematographers</th>
+          <td>{{ movieDetail?.cinematographers }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

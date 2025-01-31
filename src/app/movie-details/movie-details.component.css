@@ -1,0 +1,11 @@
+th {
+  flex: none !important;
+  text-align: right !important;
+  width: 9em !important;
+}
+td {
+  border: 0.0625rem solid #ddd !important;
+}
+tr {
+  border: 0.0625rem solid #ddd !important;
+}

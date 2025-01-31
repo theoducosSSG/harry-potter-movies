@@ -1,0 +1,45 @@
+<div style="margin-left: 15em; margin-right: 15em">
+  <h1>Harry Potter Movies</h1>
+  <div class="card" style="max-width: none">
+    <p><b>Filters</b></p>
+    <div class="row">
+      <div>
+        <label>Title&nbsp;</label>
+        <input type="text" [formControl]="titleFilter" />&nbsp;
+      </div>
+      <div>
+        <label>Release year&nbsp;</label>
+        <input
+          type="number"
+          min="0"
+          max="9999"
+          [formControl]="releaseYearFilter"
+        />
+      </div>
+    </div>
+  </div>
+  <br />
+  <ul>
+    <ng-container *ngFor="let movie of displayedMovies">
+      <li>
+        <div class="row">
+          <div style="text-align: left; width: 80%">
+            <h3>{{ movie.title }}</h3>
+            <span
+              >Release date:
+              {{ movie.release_date | date : "YYYY-MM-dd" }}</span
+            >
+            <span>Budget: {{ movie.budget }}</span>
+            <span>Duration: {{ movie.durationDisplay }}</span>
+          </div>
+          <div style="text-align: right; width: 20%">
+            <button (click)="goToMovieDetail(movie.id)" id="{{ movie.id }}">
+              Details
+            </button>
+          </div>
+        </div>
+      </li>
+      <br
+    /></ng-container>
+  </ul>
+</div>
