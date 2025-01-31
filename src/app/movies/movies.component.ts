@@ -15,20 +15,20 @@ import { MoviesService } from './movies.service';
 export class MoviesComponent implements OnInit {
   displayedMovies: Movie[] = [];
   movies: Movie[] = [];
-  titleFilter = new FormControl<string>('');
-  releaseYearFilter = new FormControl<string>('');
+  titleFilter: FormControl<string | null> = new FormControl<string>('');
+  releaseYearFilter: FormControl<string | null> = new FormControl<string>('');
   titleToFilter: string = '';
   yearToFilter: string = '';
 
   constructor(private movieService: MoviesService, private router: Router) {
-    this.movieService.getMovies().subscribe((movies) => {
+    this.movieService.getMovies().subscribe((movies: Movie[]) => {
       this.movies = this.movieService.modifyDisplayPropertiesMovies(movies);
       this.displayedMovies = this.movies;
     });
   }
 
   ngOnInit(): void {
-    this.titleFilter.valueChanges.subscribe((titleFilter) => {
+    this.titleFilter.valueChanges.subscribe((titleFilter: string | null) => {
       this.titleToFilter = titleFilter ? titleFilter : '';
       this.displayedMovies = this.applyFilters(
         this.movies,
@@ -36,14 +36,16 @@ export class MoviesComponent implements OnInit {
         this.yearToFilter
       );
     });
-    this.releaseYearFilter.valueChanges.subscribe((yearFilter) => {
-      this.yearToFilter = yearFilter ? yearFilter : '';
-      this.displayedMovies = this.applyFilters(
-        this.movies,
-        this.titleToFilter,
-        this.yearToFilter
-      );
-    });
+    this.releaseYearFilter.valueChanges.subscribe(
+      (yearFilter: string | null) => {
+        this.yearToFilter = yearFilter ? yearFilter : '';
+        this.displayedMovies = this.applyFilters(
+          this.movies,
+          this.titleToFilter,
+          this.yearToFilter
+        );
+      }
+    );
   }
 
   applyFilters(
@@ -51,14 +53,14 @@ export class MoviesComponent implements OnInit {
     titleToFilter: string | null,
     releaseYearToFilter: string | null
   ): Movie[] {
-    let filteredMovies = [...movies];
+    let filteredMovies: Movie[] = [...movies];
     if (titleToFilter) {
-      filteredMovies = filteredMovies.filter((movie) =>
+      filteredMovies = filteredMovies.filter((movie: Movie) =>
         movie.title.toLocaleLowerCase().includes(titleToFilter)
       );
     }
     if (releaseYearToFilter) {
-      filteredMovies = filteredMovies.filter((movie) =>
+      filteredMovies = filteredMovies.filter((movie: Movie) =>
         new Date(movie.release_date)
           .getFullYear()
           .toString()
@@ -68,7 +70,7 @@ export class MoviesComponent implements OnInit {
     return filteredMovies;
   }
 
-  goToMovieDetail(movieId: string) {
+  goToMovieDetail(movieId: string): void {
     this.router.navigate([`movies/${movieId}`]);
   }
 }

@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,6 +8,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  title = 'harry-potter-movies';
-}
+export class AppComponent {}

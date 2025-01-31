@@ -54,7 +54,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  returnButton() {
+  returnButton(): void {
     this.router.navigate(['/movies']);
   }
 }
