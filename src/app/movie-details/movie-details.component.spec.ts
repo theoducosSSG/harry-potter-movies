@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { MovieDetail } from '../movie-model/movie-detail';
-import { MoviesService } from '../movies/movies.service';
+import { MovieService } from '../services/movie.service';
 import { MovieDetailsComponent } from './movie-details.component';
 
 describe('MovieDetailsComponent', () => {
@@ -13,7 +13,7 @@ describe('MovieDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MovieDetailsComponent, HttpClientModule],
-      providers: [MoviesService, provideRouter([])],
+      providers: [MovieService, provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MovieDetailsComponent);

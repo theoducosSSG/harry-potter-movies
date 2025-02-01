@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Movie } from '../movie-model/movie';
-import { MoviesService } from './movies.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movies',
@@ -14,16 +14,17 @@ import { MoviesService } from './movies.service';
 })
 export class MoviesComponent implements OnInit {
   displayedMovies: Movie[] = [];
-  movies: Movie[] = [];
+  fetchedMovies: Movie[] = [];
   titleFilter: FormControl<string | null> = new FormControl<string>('');
   releaseYearFilter: FormControl<string | null> = new FormControl<string>('');
   titleToFilter: string = '';
   yearToFilter: string = '';
 
-  constructor(private movieService: MoviesService, private router: Router) {
+  constructor(private movieService: MovieService, private router: Router) {
     this.movieService.getMovies().subscribe((movies: Movie[]) => {
-      this.movies = this.movieService.modifyDisplayPropertiesMovies(movies);
-      this.displayedMovies = this.movies;
+      this.fetchedMovies =
+        this.movieService.modifyDisplayPropertiesMovies(movies);
+      this.displayedMovies = this.fetchedMovies;
     });
   }
 
@@ -31,7 +32,7 @@ export class MoviesComponent implements OnInit {
     this.titleFilter.valueChanges.subscribe((titleFilter: string | null) => {
       this.titleToFilter = titleFilter ? titleFilter : '';
       this.displayedMovies = this.applyFilters(
-        this.movies,
+        this.fetchedMovies,
         this.titleToFilter,
         this.yearToFilter
       );
@@ -40,7 +41,7 @@ export class MoviesComponent implements OnInit {
       (yearFilter: string | null) => {
         this.yearToFilter = yearFilter ? yearFilter : '';
         this.displayedMovies = this.applyFilters(
-          this.movies,
+          this.fetchedMovies,
           this.titleToFilter,
           this.yearToFilter
         );

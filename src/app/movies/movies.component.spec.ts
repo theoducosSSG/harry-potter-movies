@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HttpClientModule } from '@angular/common/http';
 import { Movie } from '../movie-model/movie';
+import { MovieService } from '../services/movie.service';
 import { MoviesComponent } from './movies.component';
-import { MoviesService } from './movies.service';
 
 describe('MoviesComponent', () => {
   let component: MoviesComponent;
@@ -12,12 +12,12 @@ describe('MoviesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MoviesComponent, HttpClientModule],
-      providers: [MoviesService],
+      providers: [MovieService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MoviesComponent);
     component = fixture.componentInstance;
-    component.movies = [
+    component.fetchedMovies = [
       new Movie('1', 'title1', 123, '1.25', new Date('2022-07-01')),
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
       new Movie('3', 'title21', 456, '2.26', new Date('1999-01-01')),
@@ -42,7 +42,7 @@ describe('MoviesComponent', () => {
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
       new Movie('3', 'title21', 456, '2.26', new Date('1999-01-01')),
     ];
-    expect(component.applyFilters(component.movies, null, null)).toEqual(
+    expect(component.applyFilters(component.fetchedMovies, null, null)).toEqual(
       expectedMovies
     );
   });
@@ -53,7 +53,7 @@ describe('MoviesComponent', () => {
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
       new Movie('3', 'title21', 456, '2.26', new Date('1999-01-01')),
     ];
-    expect(component.applyFilters(component.movies, null, null)).toEqual(
+    expect(component.applyFilters(component.fetchedMovies, null, null)).toEqual(
       expectedMovies
     );
   });
@@ -63,9 +63,9 @@ describe('MoviesComponent', () => {
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
       new Movie('3', 'title21', 456, '2.26', new Date('1999-01-01')),
     ];
-    expect(component.applyFilters(component.movies, 'title2', null)).toEqual(
-      expectedMovies
-    );
+    expect(
+      component.applyFilters(component.fetchedMovies, 'title2', null)
+    ).toEqual(expectedMovies);
   });
 
   it('test applyFilters filter release year', () => {
@@ -73,17 +73,17 @@ describe('MoviesComponent', () => {
       new Movie('1', 'title1', 123, '1.25', new Date('2022-07-01')),
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
     ];
-    expect(component.applyFilters(component.movies, null, '2022')).toEqual(
-      expectedMovies
-    );
+    expect(
+      component.applyFilters(component.fetchedMovies, null, '2022')
+    ).toEqual(expectedMovies);
   });
 
   it('test applyFilters filter title and release year', () => {
     const expectedMovies: Movie[] = [
       new Movie('2', 'title2', 456, '2.26', new Date('2022-09-12')),
     ];
-    expect(component.applyFilters(component.movies, 'title2', '2022')).toEqual(
-      expectedMovies
-    );
+    expect(
+      component.applyFilters(component.fetchedMovies, 'title2', '2022')
+    ).toEqual(expectedMovies);
   });
 });

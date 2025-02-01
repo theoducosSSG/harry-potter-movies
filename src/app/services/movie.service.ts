@@ -8,8 +8,7 @@ import { MovieDetail } from '../movie-model/movie-detail';
 @Injectable({
   providedIn: 'root',
 })
-export class MoviesService {
-
+export class MovieService {
   constructor(private httpClient: HttpClient) {}
 
   getMovies(): Observable<Movie[]> {

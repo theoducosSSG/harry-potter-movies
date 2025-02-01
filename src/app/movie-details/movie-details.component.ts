@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { catchError, of, Subject, switchMap, takeUntil } from 'rxjs';
 import { MovieDetail } from '../movie-model/movie-detail';
-import { MoviesService } from '../movies/movies.service';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -19,7 +19,7 @@ export class MovieDetailsComponent implements OnInit, OnDestroy {
   movieDetail: MovieDetail | undefined;
 
   constructor(
-    private movieService: MoviesService,
+    private movieService: MovieService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
