@@ -9,17 +9,18 @@ import { MovieDetail } from '../movie-model/movie-detail';
   providedIn: 'root',
 })
 export class MoviesService {
+
   constructor(private httpClient: HttpClient) {}
 
   getMovies(): Observable<Movie[]> {
     return this.httpClient
-      .get('http://localhost:4200/movies')
+      .get(`/movies`)
       .pipe(map((object) => object as Movie[]));
   }
 
   getMovieDetail(id: string): Observable<MovieDetail> {
     return this.httpClient
-      .get(`http://localhost:4200/movies/${id}`)
+      .get(`/movies/${id}`)
       .pipe(map((object) => object as MovieDetail));
   }
 
