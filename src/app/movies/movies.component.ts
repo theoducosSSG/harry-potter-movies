@@ -57,7 +57,9 @@ export class MoviesComponent implements OnInit {
     let filteredMovies: Movie[] = [...movies];
     if (titleToFilter) {
       filteredMovies = filteredMovies.filter((movie: Movie) =>
-        movie.title.toLocaleLowerCase().includes(titleToFilter)
+        movie.title
+          .toLocaleLowerCase()
+          .includes(titleToFilter.toLocaleLowerCase())
       );
     }
     if (releaseYearToFilter) {
